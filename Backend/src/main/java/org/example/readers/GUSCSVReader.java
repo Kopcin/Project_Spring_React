@@ -14,13 +14,16 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class GUSCSVReader {
+public class GUSCSVReader<T> implements StatisticDataReader {
 
     private List<List<String>> records;
     private String file;
     private CSVReader csvReader;
 
-    public GUSCSVReader(String filePath){
+    public Class type;
+
+    public GUSCSVReader(String filePath, Class type){
+        this.type = type;
         char separator = ';';
         this.records = new ArrayList<List<String>>();
         this.file = filePath;
@@ -75,6 +78,18 @@ public class GUSCSVReader {
         return trimed;
     }
 
+    @Override
+    public StatisticData<T> toStatisticData() {
+        ArrayList<SingleData> data = new ArrayList<SingleData>();
+
+        for (Integer i = 1960; i <= 2022; i++){
+            if(this.type == Long.class)data.add(new SingleData(i,this.getLongValueByYear(i)));
+            if(this.type == Float.class)data.add(new SingleData(i,this.getFloatValueByYear(i)));
+        }
+        return  new StatisticData(data);
+    }
+
+
     public void printRecords() {
         for (List<String> record : records) {
             for (String value : record) {
@@ -88,6 +103,7 @@ public class GUSCSVReader {
         return records.get(0).get(0);
     }
 
+
     public Long getLongValueByYear(Integer year){
         List<String> years = records.get(0);
         String currentYear;
@@ -97,19 +113,20 @@ public class GUSCSVReader {
                 currentYear = years.get(i);
             }
             catch (IndexOutOfBoundsException e){
-                return WordBankXMLReader.LONG_VALUE_NOT_FOUND;
+                return StatisticDataReader.LONG_VALUE_NOT_FOUND;
             }
             if(currentYear.equals(String.valueOf(year))){
                 try {
                     return Long.valueOf(records.get(1).get(i));
                 }
                 catch (NumberFormatException e){
-                    return WordBankXMLReader.LONG_VALUE_NOT_FOUND;
+                    return StatisticDataReader.LONG_VALUE_NOT_FOUND;
                 }
             }
             i++;
         }
     }
+
 
     public Float getFloatValueByYear(Integer year){
         List<String> years = records.get(0);
@@ -133,4 +150,6 @@ public class GUSCSVReader {
             i++;
         }
     }
+
+
 }

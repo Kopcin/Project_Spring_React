@@ -17,8 +17,9 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
-public class WordBankXMLReader {
+public class WordBankXMLReader<T> {
 
     public static final Float FLOAT_VALUE_NOT_FOUND = -999F;
     public static final Long LONG_VALUE_NOT_FOUND = 0L;
@@ -27,7 +28,9 @@ public class WordBankXMLReader {
     private Document document;
     NodeList nodeList;
 
-    public WordBankXMLReader(String filePath){
+    public Class type;
+
+    public WordBankXMLReader(String filePath, Class type){
         this.file = filePath;
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
         try{
@@ -97,6 +100,17 @@ public class WordBankXMLReader {
             }
         }
         return null;
+    }
+
+
+    public StatisticData<T> toStatisticData() {
+        ArrayList<SingleData> data = new ArrayList<SingleData>();
+
+        for (Integer i = 1960; i <= 2022; i++){
+            if(this.type == Long.class)data.add(new SingleData(i,this.getLongValueByYear(i)));
+            if(this.type == Float.class)data.add(new SingleData(i,this.getFloatValueByYear(i)));
+        }
+        return  new StatisticData(data);
     }
 
     private Integer getYear(NodeList fieldList){
