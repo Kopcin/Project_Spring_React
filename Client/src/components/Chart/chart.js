@@ -96,6 +96,7 @@ const Chart = ({ chartData, cutYear }) => {
 
     const options = {
         responsive: true,
+        maintainAspectRatio: false,
         plugins: {
             legend: {
                 position: 'top',
