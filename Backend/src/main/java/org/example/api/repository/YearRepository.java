@@ -11,7 +11,6 @@ import java.util.List;
 
 @Repository
 public interface YearRepository extends JpaRepository<Year, Long> {
-    //@Query("SELECT new org.example.api.dto.YearPopulationDTO(y.year, y.population) FROM Year y")
     @Query("SELECT new org.example.api.dto.YearLongDTO(y.year, y.population) FROM Year y")
     List<YearLongDTO> findYearAndPopulation();
 

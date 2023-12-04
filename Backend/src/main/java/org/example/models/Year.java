@@ -44,12 +44,6 @@ public class Year {
         this.year = year;
     }
 
-    //do testow
-    public Year(long year, long population) {
-        this.year = year;
-        this.population = population;
-    }
-
     public Year() {
     }
 
