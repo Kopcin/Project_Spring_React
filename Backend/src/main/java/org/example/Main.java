@@ -15,16 +15,13 @@ public class Main {
 
         SpringApplication.run(Main.class, args);
 
-        // JPA stuff
-        System.out.println("JPA project");
+        loadData();
+    }
+
+    public static void loadData(){
         EntityManagerFactory factory = Persistence.createEntityManagerFactory("Hibernate_JPA");
         EntityManager em = factory.createEntityManager();
-//        em.getTransaction().begin();
         Year j1;
-//        em.persist(j1);
-//        em.getTransaction().commit();
-//        em.close();
-//        factory.close();
 
         WordBankXMLReader gdpReader = new WordBankXMLReader("src/main/resources/data/gdp_currentlcu.xml");
         WordBankXMLReader povReader = new WordBankXMLReader("src/main/resources/data/poverty_headcount_perc.xml");
@@ -39,6 +36,7 @@ public class Main {
         GUSCSVReader hospPacReader = new GUSCSVReader("src/main/resources/data/hospital_patients.csv");
         GUSCSVReader psychPacReader = new GUSCSVReader("src/main/resources/data/psychiatric_patients.csv");
         GUSCSVReader suicideAttReader = new GUSCSVReader("src/main/resources/data/suicide_attempts_per_100k.csv");
+
         for (Integer i = 1960; i <= 2022; i++) {
             em.getTransaction().begin();
             j1 = new Year(i);
@@ -63,5 +61,4 @@ public class Main {
         em.close();
         factory.close();
     }
-
 }
