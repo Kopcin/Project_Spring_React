@@ -19,7 +19,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class WordBankXMLReader<T> {
+public class WordBankXMLReader {
 
     public static final Float FLOAT_VALUE_NOT_FOUND = -999F;
     public static final Long LONG_VALUE_NOT_FOUND = 0L;
@@ -28,10 +28,10 @@ public class WordBankXMLReader<T> {
     private Document document;
     NodeList nodeList;
 
-    public Class type;
+    //public Class type;
 
-    public WordBankXMLReader(String filePath, Class type){
-        this.file = filePath;
+    public WordBankXMLReader(String filePath){
+        //this.file = filePath;
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
         try{
             dbf.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, true);
@@ -102,7 +102,7 @@ public class WordBankXMLReader<T> {
         return null;
     }
 
-
+    /*
     public StatisticData<T> toStatisticData() {
         ArrayList<SingleData> data = new ArrayList<SingleData>();
 
@@ -112,6 +112,7 @@ public class WordBankXMLReader<T> {
         }
         return  new StatisticData(data);
     }
+     */
 
     private Integer getYear(NodeList fieldList){
         for(int i = 0; i<fieldList.getLength(); i++) {

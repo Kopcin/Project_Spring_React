@@ -14,16 +14,16 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class GUSCSVReader<T> implements StatisticDataReader {
+public class GUSCSVReader implements StatisticDataReader {
 
     private List<List<String>> records;
     private String file;
     private CSVReader csvReader;
 
-    public Class type;
+    // Class type;
 
-    public GUSCSVReader(String filePath, Class type){
-        this.type = type;
+    public GUSCSVReader(String filePath){
+        //this.type = type;
         char separator = ';';
         this.records = new ArrayList<List<String>>();
         this.file = filePath;
@@ -78,6 +78,7 @@ public class GUSCSVReader<T> implements StatisticDataReader {
         return trimed;
     }
 
+    /*
     @Override
     public StatisticData<T> toStatisticData() {
         ArrayList<SingleData> data = new ArrayList<SingleData>();
@@ -88,6 +89,7 @@ public class GUSCSVReader<T> implements StatisticDataReader {
         }
         return  new StatisticData(data);
     }
+     */
 
 
     public void printRecords() {
