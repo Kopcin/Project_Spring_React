@@ -1,5 +1,5 @@
-import org.example.readers.GUSCSVReader;
-import org.example.readers.StatisticDataReader;
+package org.example.readers;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

@@ -1,11 +1,10 @@
-import org.example.readers.StatisticDataReader;
-import org.example.readers.WordBankXMLReader;
+package org.example.readers;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class WorldBankReaderTest {
-
     private WordBankXMLReader reader;
 
     @BeforeEach
