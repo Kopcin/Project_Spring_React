@@ -31,7 +31,7 @@ public class WordBankXMLReader {
     //public Class type;
 
     public WordBankXMLReader(String filePath){
-        //this.file = filePath;
+        this.file = filePath;
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
         try{
             dbf.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, true);
