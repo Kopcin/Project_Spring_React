@@ -19,8 +19,8 @@ public class StatisticData<T> {
         for (SingleData<T> element : dataList) {
             if (element.getYear() == i) return element.getValue();
         }
-        if(this.getType() == Long.class) return (T) StatisticDataReader.LONG_VALUE_NOT_FOUND;
-        if(this.getType() == Float.class) return (T) StatisticDataReader.FLOAT_VALUE_NOT_FOUND;
+        if(this.getType() == Long.class) return (T) StatisticLongDataReader.LONG_VALUE_NOT_FOUND;
+        if(this.getType() == Float.class) return (T) StatisticFloatDataReader.FLOAT_VALUE_NOT_FOUND;
         throw new RuntimeException();
     }
 }
