@@ -20,8 +20,8 @@ public class Main {
 
     public static void loadData(){
         EntityManagerFactory factory = Persistence.createEntityManagerFactory("Hibernate_JPA");
-        EntityManager em = factory.createEntityManager();
-        Year j1;
+        EntityManager entityManager = factory.createEntityManager();
+        Year year;
 
         WordBankXMLReader gdpReader = new WordBankXMLReader("src/main/resources/data/gdp_currentlcu.xml");
         WordBankXMLReader povReader = new WordBankXMLReader("src/main/resources/data/poverty_headcount_perc.xml");
@@ -37,28 +37,28 @@ public class Main {
         GUSCSVReader psychPacReader = new GUSCSVReader("src/main/resources/data/psychiatric_patients.csv");
         GUSCSVReader suicideAttReader = new GUSCSVReader("src/main/resources/data/suicide_attempts_per_100k.csv");
 
-        for (Integer i = 1960; i <= 2022; i++) {
-            em.getTransaction().begin();
-            j1 = new Year(i);
-            j1.setGdp(gdpReader.getLongValueByYear(i));
-            j1.setLife_expectancy(lifeExpectancyReader.getFloatValueByYear(i));
-            j1.setPoverty_headcount(povReader.getFloatValueByYear(i));
-            j1.setUnemployment(unemplaymentReader.getFloatValueByYear(i));
-            j1.setInflation(inflationReader.getFloatValueByYear(i));
-            j1.setFamily_benefits(aofbReader.getLongValueByYear(i));
-            j1.setAverage_retirement(avRetirementReader.getFloatValueByYear(i));
-            j1.setBad_household_situation(badHousSit.getFloatValueByYear(i));
-            j1.setCrimes(crimesReader.getLongValueByYear(i));
-            j1.setHospital_patients(hospPacReader.getLongValueByYear(i));
-            j1.setPsychiatric_patients(psychPacReader.getLongValueByYear(i));
-            j1.setSuicide_attempts(suicideAttReader.getLongValueByYear(i));
-            j1.setPopulation(populationReader.getLongValueByYear(i));
+        for (Integer yearIterator = 1960; yearIterator <= 2022; yearIterator++) {
+            entityManager.getTransaction().begin();
+            year = new Year(yearIterator);
+            year.setGdp(gdpReader.getLongValueByYear(yearIterator));
+            year.setLife_expectancy(lifeExpectancyReader.getFloatValueByYear(yearIterator));
+            year.setPoverty_headcount(povReader.getFloatValueByYear(yearIterator));
+            year.setUnemployment(unemplaymentReader.getFloatValueByYear(yearIterator));
+            year.setInflation(inflationReader.getFloatValueByYear(yearIterator));
+            year.setFamily_benefits(aofbReader.getLongValueByYear(yearIterator));
+            year.setAverage_retirement(avRetirementReader.getFloatValueByYear(yearIterator));
+            year.setBad_household_situation(badHousSit.getFloatValueByYear(yearIterator));
+            year.setCrimes(crimesReader.getLongValueByYear(yearIterator));
+            year.setHospital_patients(hospPacReader.getLongValueByYear(yearIterator));
+            year.setPsychiatric_patients(psychPacReader.getLongValueByYear(yearIterator));
+            year.setSuicide_attempts(suicideAttReader.getLongValueByYear(yearIterator));
+            year.setPopulation(populationReader.getLongValueByYear(yearIterator));
 
-            em.persist(j1);
-            em.getTransaction().commit();
+            entityManager.persist(year);
+            entityManager.getTransaction().commit();
         }
 
-        em.close();
+        entityManager.close();
         factory.close();
     }
 }

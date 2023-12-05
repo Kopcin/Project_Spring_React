@@ -17,26 +17,25 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 
 public class WordBankXMLReader {
 
     public static final Float FLOAT_VALUE_NOT_FOUND = -999F;
     public static final Long LONG_VALUE_NOT_FOUND = 0L;
-    private String file;
+    private String inputFile;
     private DocumentBuilder documentBuilder;
     private Document document;
-    NodeList nodeList;
+    NodeList contentList;
 
     //public Class type;
 
     public WordBankXMLReader(String filePath){
-        this.file = filePath;
+        this.inputFile = filePath;
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
         try{
             dbf.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, true);
             documentBuilder = dbf.newDocumentBuilder();
-            document = documentBuilder.parse(new File(file));
+            document = documentBuilder.parse(new File(inputFile));
 
             document.getDocumentElement().normalize();
 
@@ -45,7 +44,7 @@ public class WordBankXMLReader {
             e.printStackTrace();
         }
         System.out.println("Data read sukcesful");
-        this.nodeList = document.getElementsByTagName("record");
+        this.contentList = document.getElementsByTagName("record");
         this.removeNonPolandData();
 
         try {
@@ -67,8 +66,8 @@ public class WordBankXMLReader {
     }
 
     private void removeNonPolandData(){
-        for (int i = nodeList.getLength() - 1; i >= 0; i--) {
-            Node node = nodeList.item(i);
+        for (int i = contentList.getLength() - 1; i >= 0; i--) {
+            Node node = contentList.item(i);
             if(node.getNodeType() == Node.ELEMENT_NODE) {
                 Element element = (Element) node;
                 String key = null;
@@ -127,8 +126,8 @@ public class WordBankXMLReader {
     }
 
     public long getLongValueByYear(Integer year){
-        for (int i = nodeList.getLength() - 1; i >= 0; i--) {
-            Node node = nodeList.item(i);
+        for (int i = contentList.getLength() - 1; i >= 0; i--) {
+            Node node = contentList.item(i);
             if (node.getNodeType() == Node.ELEMENT_NODE) {
                 Element element = (Element) node;
                 NodeList fieldList = element.getElementsByTagName("field");
@@ -146,8 +145,8 @@ public class WordBankXMLReader {
         return 0;
     }
     public Float getFloatValueByYear(Integer year){
-        for (int i = nodeList.getLength() - 1; i >= 0; i--) {
-            Node node = nodeList.item(i);
+        for (int i = contentList.getLength() - 1; i >= 0; i--) {
+            Node node = contentList.item(i);
             if (node.getNodeType() == Node.ELEMENT_NODE) {
                 Element element = (Element) node;
                 NodeList fieldList = element.getElementsByTagName("field");

@@ -17,20 +17,19 @@ import java.util.List;
 public class GUSCSVReader implements StatisticDataReader {
 
     private List<List<String>> records;
-    private String file;
+    private String inputFile;
     private CSVReader csvReader;
 
     // Class type;
 
     public GUSCSVReader(String filePath){
         //this.type = type;
-        char separator = ';';
         this.records = new ArrayList<List<String>>();
-        this.file = filePath;
+        this.inputFile = filePath;
         CSVParser parser = new CSVParserBuilder().withSeparator(';').build();
         try{
-            BufferedReader br = new BufferedReader(new FileReader(filePath));
-            this.csvReader = new CSVReaderBuilder(br).withCSVParser(parser).build();
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(filePath));
+            this.csvReader = new CSVReaderBuilder(bufferedReader).withCSVParser(parser).build();
             String[] values;
             while((values = csvReader.readNext()) != null){
                 records.add(Arrays.asList(values));
@@ -64,16 +63,16 @@ public class GUSCSVReader implements StatisticDataReader {
 
         String[] splitedRow;
         row = trimed.get(0);
-        List<String> newrow = new ArrayList<String>();
+        List<String> newRow = new ArrayList<String>();
         i = 0;
         for(String r : row){
             if (r != "") {
                 System.out.println(r);
                 splitedRow = r.split(";");
-                newrow.add(splitedRow[splitedRow.length-2]);
+                newRow.add(splitedRow[splitedRow.length-2]);
             }
         }
-        trimed.set(0,newrow);
+        trimed.set(0,newRow);
 
         return trimed;
     }
