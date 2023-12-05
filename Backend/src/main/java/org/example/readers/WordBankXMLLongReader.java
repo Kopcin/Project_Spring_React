@@ -100,7 +100,7 @@ public class WordBankXMLLongReader implements StatisticLongDataReader{
     }
 
     public StatisticLongData toStatisticData() {
-        ArrayList<SingleLongData> data = new ArrayList<SingleLongData>();
+        ArrayList<SingleLongData> data = new ArrayList<>();
 
         for (Integer i = 1960; i <= 2022; i++){
             data.add(new SingleLongData(i,this.getValueByYear(i)));
