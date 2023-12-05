@@ -17,6 +17,7 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class WordBankXMLLongReader implements StatisticLongDataReader{
     private String inputFile;
@@ -98,17 +99,14 @@ public class WordBankXMLLongReader implements StatisticLongDataReader{
         return null;
     }
 
-    /*
-    public StatisticData<T> toStatisticData() {
-        ArrayList<SingleData> data = new ArrayList<SingleData>();
+    public StatisticLongData toStatisticData() {
+        ArrayList<SingleLongData> data = new ArrayList<>();
 
         for (Integer i = 1960; i <= 2022; i++){
-            if(this.type == Long.class)data.add(new SingleData(i,this.getLongValueByYear(i)));
-            if(this.type == Float.class)data.add(new SingleData(i,this.getFloatValueByYear(i)));
+            data.add(new SingleLongData(i,this.getValueByYear(i)));
         }
-        return  new StatisticData(data);
+        return  new StatisticLongData(data);
     }
-     */
 
     private Integer getYear(NodeList fieldList){
         for(int i = 0; i<fieldList.getLength(); i++) {

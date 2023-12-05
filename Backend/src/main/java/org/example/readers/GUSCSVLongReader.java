@@ -76,18 +76,16 @@ public class GUSCSVLongReader implements StatisticLongDataReader {
         return trimed;
     }
 
-    /*
-    @Override
-    public StatisticData<T> toStatisticData() {
-        ArrayList<SingleData> data = new ArrayList<SingleData>();
+    public StatisticLongData toStatisticData() {
+        ArrayList<SingleLongData> data = new ArrayList<>();
 
         for (Integer i = 1960; i <= 2022; i++){
-            if(this.type == Long.class)data.add(new SingleData(i,this.getLongValueByYear(i)));
-            if(this.type == Float.class)data.add(new SingleData(i,this.getFloatValueByYear(i)));
+            if(this.getValueByYear(i) != this.getValueByYear(i)) {
+                data.add(new SingleLongData(i, this.getValueByYear(i)));
+            }
         }
-        return  new StatisticData(data);
+        return  new StatisticLongData(data);
     }
-     */
 
 
     //This method can be used for debugging
