@@ -114,14 +114,14 @@ public class GUSCSVLongReader implements StatisticLongDataReader {
                 currentYear = years.get(i);
             }
             catch (IndexOutOfBoundsException e){
-                return StatisticLongDataReader.LONG_VALUE_NOT_FOUND;
+                return StatisticDataReader.LONG_VALUE_NOT_FOUND;
             }
             if(currentYear.equals(String.valueOf(year))){
                 try {
                     return Long.valueOf(records.get(1).get(i));
                 }
                 catch (NumberFormatException e){
-                    return StatisticLongDataReader.LONG_VALUE_NOT_FOUND;
+                    return StatisticDataReader.LONG_VALUE_NOT_FOUND;
                 }
             }
             i++;

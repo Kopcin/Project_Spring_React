@@ -134,7 +134,7 @@ public class WordBankXMLFloatReader implements StatisticFloatDataReader {
                         return Float.valueOf(foundValue);
                     }
                     catch (NumberFormatException e){
-                        return FLOAT_VALUE_NOT_FOUND;
+                        return StatisticDataReader.FLOAT_VALUE_NOT_FOUND;
                     }
                 }
             }

@@ -100,14 +100,14 @@ public class GUSCSVFloatReader implements StatisticFloatDataReader {
                 currentYear = years.get(i);
             }
             catch (IndexOutOfBoundsException e){
-                return StatisticFloatDataReader.FLOAT_VALUE_NOT_FOUND;
+                return StatisticDataReader.FLOAT_VALUE_NOT_FOUND;
             }
             if(currentYear.equals(String.valueOf(year))){
                 try {
                     return Float.valueOf(records.get(1).get(i));
                 }
                 catch (NumberFormatException e){
-                    return StatisticFloatDataReader.FLOAT_VALUE_NOT_FOUND;
+                    return StatisticDataReader.FLOAT_VALUE_NOT_FOUND;
                 }
             }
             i++;

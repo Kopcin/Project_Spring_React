@@ -19,9 +19,6 @@ import java.io.File;
 import java.io.IOException;
 
 public class WordBankXMLLongReader implements StatisticLongDataReader{
-
-    public static final Float FLOAT_VALUE_NOT_FOUND = -999F;
-    public static final Long LONG_VALUE_NOT_FOUND = 0L;
     private String inputFile;
     private DocumentBuilder documentBuilder;
     private Document document;
@@ -137,7 +134,7 @@ public class WordBankXMLLongReader implements StatisticLongDataReader{
                         return Long.valueOf(foundValue);
                     }
                     catch (NumberFormatException e){
-                        return LONG_VALUE_NOT_FOUND;
+                        return StatisticDataReader.LONG_VALUE_NOT_FOUND;
                     }
                 }
             }
