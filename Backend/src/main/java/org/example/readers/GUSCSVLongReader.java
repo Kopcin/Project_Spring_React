@@ -80,7 +80,9 @@ public class GUSCSVLongReader implements StatisticLongDataReader {
         ArrayList<SingleLongData> data = new ArrayList<>();
 
         for (Integer i = 1960; i <= 2022; i++){
-            data.add(new SingleLongData(i,this.getValueByYear(i)));
+            if(this.getValueByYear(i) != this.getValueByYear(i)) {
+                data.add(new SingleLongData(i, this.getValueByYear(i)));
+            }
         }
         return  new StatisticLongData(data);
     }

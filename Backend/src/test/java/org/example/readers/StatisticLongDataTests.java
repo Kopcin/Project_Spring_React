@@ -13,38 +13,38 @@ public class StatisticLongDataTests {
     StatisticLongData data;
 
     @BeforeEach
-    public void initatateList(){
+    public void initiateList(){
         data = new GUSCSVLongReader("src/main/resources/data/psychiatric_patients.csv")
                 .toStatisticData();
     }
 
     @Test
     public void getSizeTest(){
-        Assertions.assertEquals(data.getSize(),9);
+        Assertions.assertEquals(9,data.getSize());
     }
 
     @Test
     public void getValueByYearTest(){
-        Assertions.assertEquals(data.getValueByYear(2020),163661);
+        Assertions.assertEquals(163661L,data.getValueByYear(2020));
     }
 
     @Test
     public void getValueFromInvalidYearTest(){
-        Assertions.assertEquals(data.getValueByYear(1990), StatisticDataReader.LONG_VALUE_NOT_FOUND);
+        Assertions.assertEquals(StatisticDataReader.LONG_VALUE_NOT_FOUND, data.getValueByYear(1990));
     }
 
     @Test
     public void getTotalFromExistingYearsTest(){
-        Assertions.assertEquals(data.getTotalBetweenYear(2019,2021),535483);
+        Assertions.assertEquals(data.getTotalBetweenYear(2019,2021),535483L);
     }
 
     @Test
-    public void getTotalFromNoDataYearsExeptionTest(){
-        Throwable throwable = Assertions.assertThrows(NullPointerException.class, () -> data.getTotalBetweenYear(2000,1992));
+    public void getTotalFromNoDataYearsExceptionTest(){
+        Throwable throwable = Assertions.assertThrows(NullPointerException.class, () -> data.getTotalBetweenYear(1992,2000));
     }
 
     @Test
-    public void getTotalFromIvalidYearsExeptionTest(){
+    public void getTotalFromInvalidYearsExceptionTest(){
         Throwable throwable = Assertions.assertThrows(InvalidParameterException.class, () -> data.getTotalBetweenYear(2009,2001));
     }
 }

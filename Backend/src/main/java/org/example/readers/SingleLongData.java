@@ -13,7 +13,8 @@ public class SingleLongData {
         return year;
     }
 
-    public Long  getValue() {
+    public Long
+    getValue() {
         return value;
     }
 }
