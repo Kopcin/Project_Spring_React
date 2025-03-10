@@ -7,7 +7,7 @@ Temat:
 Porównanie danych ekonomicznych z danymi dotyczącymi dobrostanu polaków z dokładnością do roku.
 
 Opis:
-Celem projektu jest stwożenie strony internetowaj, która pozwoli użytkowikowi zbadać dane ekonomiczne ("np. inflacja") i porównać je z danymi na temat dobrostanu i jakości życia polaków ("np średnią długości życia").
+Celem projektu jest stworzenie strony internetowaj, która pozwoli użytkowikowi zbadać dane ekonomiczne ("np. inflacja") i porównać je z danymi na temat dobrostanu i jakości życia polaków ("np średnią długości życia").
 Dane są pobierane z zapisanych na serwerze plików .xml lub .csv i zapisywane do bazy danych sql. Dane z bazy są wczytywane za pomącą zapytań do servera REST. Frontend jest wykonany przy użyciu szkieletu React.
 Dane na stronie są wyświetlane na wykresie i automatycznie dobiera zakres w zależności od dostępności danych.
 
